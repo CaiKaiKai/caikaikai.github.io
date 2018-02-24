@@ -1,15 +1,26 @@
 <!DOCTYPE HTML>
-<!--
-	Story by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Story by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script type="text/javascript">
+			var howLaunched = window.location.search.substring(1).split('=')[0];
+			if (howLaunched === 'homescreen') {
+			    setTimeout(function(){
+			    	var welcome = document.getElementById('welcome-back')
+			    	welcome.remove()
+			    },5000)
+			}else{
+			  	var css = document.styleSheets
+			  	var x = css.length
+			  	var css1 = css[x - 1];
+			  	var cssr = css1.cssRules;
+			  	var y = cssr.length - 1
+			  	css1.insertRule('main{display:none;}',y)
+			}
+		</script>
 	</head>
 	<body>
 
