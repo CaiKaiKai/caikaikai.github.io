@@ -79,8 +79,8 @@ var populateCurrentCacheNames = function (precacheConfig,
     var currentCacheNamesToAbsoluteUrl = {};
 
     precacheConfig.forEach(function(cacheOption) {
-      var absoluteUrl = new URL(cacheOption[0], baseUrl).toString();
-      var cacheName = cacheNamePrefix + absoluteUrl + '-' + cacheOption[1];
+      var absoluteUrl = new URL(cacheOption, baseUrl).toString();
+      var cacheName = cacheNamePrefix + absoluteUrl;
       currentCacheNamesToAbsoluteUrl[cacheName] = absoluteUrl;
       absoluteUrlToCacheName[absoluteUrl] = cacheName;
     });
