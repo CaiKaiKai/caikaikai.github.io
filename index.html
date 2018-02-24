@@ -3,8 +3,27 @@
 	<head>
 		<title>Story by HTML5 UP</title>
 		<meta charset="utf-8" />
+		<meta name="theme-color" content="#151E23">
+		<meta name="x5-orientation" content="portrait">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="manifest" href="css/manifest.json">
+		<script type="text/javascript">
+			var howLaunched = window.location.search.substring(1).split('=')[0];
+			if (howLaunched === 'homescreen') {
+			    setTimeout(function(){
+			    	var welcome = document.getElementById('welcome-back')
+			    	welcome.remove()
+			    },5000)
+			}else{
+			  	var css = document.styleSheets
+			  	var x = css.length
+			  	var css1 = css[x - 1];
+			  	var cssr = css1.cssRules;
+			  	var y = cssr.length - 1
+			  	css1.insertRule('main{display:none;}',y)
+			}
+		</script>
 		<script language="javascript">
 			if ('serviceWorker' in navigator) {
 			  window.addEventListener('load', function() {
@@ -22,7 +41,9 @@
 		</script>
 	</head>
 	<body>
-
+		<main id="welcome-back">
+	      <h1>Welcome back!</h1>
+	    </main>
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
 

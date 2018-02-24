@@ -6,7 +6,41 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+@keyframes fadeOut {
+	to {
+		opacity: 0;
+	}
+}
 
+@-webkit-keyframes fadeOut {
+	to {
+		opacity: 0;
+	}
+}
+
+.isPaused {
+	animation-play-state: paused;
+}
+
+main {
+	text-align: center;
+	font-family: Helvetica, Arial, Sans-Serif;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: #1F2C32;
+	z-index: 999999;
+	opacity: 1;
+	animation: fadeOut 6s forwards;
+	-webkit-animation:  fadeOut 6s forwards;
+}
+
+main h1 {
+	color: white;
+	padding-top: 100px;
+}
 /* Reset */
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
