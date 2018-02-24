@@ -209,7 +209,6 @@ self.addEventListener('message', function(event) {
 
 
 self.addEventListener('fetch', function(event) {
-  if (event.request.method === 'GET') {
     var urlWithoutIgnoredParameters = stripIgnoredUrlParameters(event.request.url,
       IgnoreUrlParametersMatching);
 
@@ -254,5 +253,4 @@ self.addEventListener('fetch', function(event) {
         })
       );
     }
-  }
 });
