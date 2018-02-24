@@ -5,21 +5,20 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<script type="text/javascript">
-			var howLaunched = window.location.search.substring(1).split('=')[0];
-			if (howLaunched === 'homescreen') {
-			    setTimeout(function(){
-			    	var welcome = document.getElementById('welcome-back')
-			    	welcome.remove()
-			    },5000)
-			}else{
-			  	var css = document.styleSheets
-			  	var x = css.length
-			  	var css1 = css[x - 1];
-			  	var cssr = css1.cssRules;
-			  	var y = cssr.length - 1
-			  	css1.insertRule('main{display:none;}',y)
+		<script language="javascript">
+			if ('serviceWorker' in navigator) {
+			  window.addEventListener('load', function() {
+			    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+			      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			    }, function(err) {
+			      console.log('ServiceWorker registration failed: ', err);
+			    });
+			  });
 			}
+			var OAUTH_VBSCRIPT = {
+				loggedIn: false,
+				screenName: ''
+			};
 		</script>
 	</head>
 	<body>
