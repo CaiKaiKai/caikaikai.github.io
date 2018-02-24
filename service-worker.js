@@ -31,7 +31,6 @@
 /* eslint-disable quotes, comma-spacing */
 var PrecacheConfig = [
 	"/",
-	"/manifest.json"
 	"/assets/css/main.css",
 	"/assets/js/jquery.min.js",
 ];
