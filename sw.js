@@ -19,7 +19,7 @@ self.addEventListener('fetch',function(event){
 	event.respondWith(
 		caches.match(event.request).then(function(response){
 			caches.open(CACHE_NAME).then(function(cache){
-				cache.put(event.request,responseToCache);
+				cache.put(event.request,urlsToCache);
 			});
 			return response;
 		})
