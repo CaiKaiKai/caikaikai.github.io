@@ -1,34 +1,32 @@
-
-
-
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open('my-cache-v1').then(function (cache) {
             return cache.addAll([
-                "/",
-				"/assets/css/main.css",
-				"/images/banner.jpg",
-				"/images/spotlight01.jpg",
-				"/images/spotlight02.jpg",
-				"/images/spotlight03.jpg",
-				"/images/gallery/fulls/01.jpg",
-				"/images/gallery/fulls/02.jpg",
-				"/images/gallery/fulls/03.jpg",
-				"/images/gallery/fulls/04.jpg",
-				"/assets/css/font-awesome.min.css",
-				"/assets/js/jquery.min.js",
-				"/assets/js/jquery.scrollex.min.js",
-				"/assets/js/jquery.scrolly.min.js",
-				"/assets/js/skel.min.js",
-				"/assets/js/util.js",
-				"/assets/js/main.js"
+                "/"
             ]);
         })
     );
 });
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        Promise.all([
 
+            // 更新客户端
+            self.clients.claim(),
 
-
+            // 清理旧版本
+            caches.keys().then(function (cacheList) {
+                return Promise.all(
+                    cacheList.map(function (cacheName) {
+                        if (cacheName !== 'my-cache-v1') {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+        ])
+    );
+});
 
 self.addEventListener('fetch', function (event) {
     event.respondWith(
