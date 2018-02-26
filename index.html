@@ -272,7 +272,7 @@
 		window.addEventListener('beforeinstallprompt', function (e) {
 		    // 将事件返回存储起来
 		    deferredPrompt = e;
-		
+			console.log(e)
 		    // 取消默认事件
 		    e.preventDefault();
 		    return false;
@@ -281,6 +281,7 @@
 		    if (deferredPrompt != null) {
 		        // 异步触发横幅显示
 		        deferredPrompt.prompt();
+		        console.log(deferredPrompt,'121')
 		        // 检测用户的安装行为
 		        deferredPrompt.userChoice.then(function (choiceResult) {
 		            console.log(choiceResult.outcome);
