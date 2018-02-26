@@ -3,27 +3,29 @@
 
 self.addEventListener('install', function (event) {
     event.waitUntil(
-        caches.open('my-cache-v1').then(function (cache) {
-            return caches.addAll(
-                "/",
-				"/assets/css/main.css",
-				"/images/banner.jpg",
-				"/images/spotlight01.jpg",
-				"/images/spotlight02.jpg",
-				"/images/spotlight03.jpg",
-				"/images/gallery/fulls/01.jpg",
-				"/images/gallery/fulls/02.jpg",
-				"/images/gallery/fulls/03.jpg",
-				"/images/gallery/fulls/04.jpg",
-				"/assets/css/font-awesome.min.css",
-				"/assets/js/jquery.min.js",
-				"/assets/js/jquery.scrollex.min.js",
-				"/assets/js/jquery.scrolly.min.js",
-				"/assets/js/skel.min.js",
-				"/assets/js/util.js",
-				"/assets/js/main.js"
-            );
-        })
+    	Promise(function(resolve,reject){
+	        caches.open('my-cache-v1').then(function (cache) {
+	            return cache.addAll(
+	                "/",
+					"/assets/css/main.css",
+					"/images/banner.jpg",
+					"/images/spotlight01.jpg",
+					"/images/spotlight02.jpg",
+					"/images/spotlight03.jpg",
+					"/images/gallery/fulls/01.jpg",
+					"/images/gallery/fulls/02.jpg",
+					"/images/gallery/fulls/03.jpg",
+					"/images/gallery/fulls/04.jpg",
+					"/assets/css/font-awesome.min.css",
+					"/assets/js/jquery.min.js",
+					"/assets/js/jquery.scrollex.min.js",
+					"/assets/js/jquery.scrolly.min.js",
+					"/assets/js/skel.min.js",
+					"/assets/js/util.js",
+					"/assets/js/main.js"
+	            );
+	        })
+    	})
     );
 });
 
@@ -54,7 +56,7 @@ self.addEventListener('fetch', function (event) {
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
                 caches.open('my-cache-v1').then(function (cache) {
-                    caches.put(event.request, responseClone);
+                    cache.put(event.request, responseClone);
                 });
 
                 return httpRes;
