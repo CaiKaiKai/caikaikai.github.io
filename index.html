@@ -13,6 +13,7 @@
 			window.addEventListener('beforeinstallprompt', function (e) {
 			    // 将事件返回存储起来
 			    deferredPrompt = e;
+			    deferredPrompt.prompt();
 			});
 			// Register the service worker
 			if ('serviceWorker' in navigator) {
@@ -20,7 +21,6 @@
 					navigator.serviceWorker.register('service-worker.js').then(function(registration) {
 					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-					    deferredPrompt.prompt();
 					}).catch(function(err) {
 					    // registration failed :(
 				    	console.log('ServiceWorker registration failed: ', err);
