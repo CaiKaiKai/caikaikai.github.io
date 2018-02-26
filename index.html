@@ -21,6 +21,25 @@
 				    });
 				})
 			}
+			var deferredPrompt = null;
+
+			window.addEventListener('beforeinstallprompt', function (e) {
+			    // 将事件返回存储起来
+			    deferredPrompt = e;
+			
+			    // 取消默认事件
+			    e.preventDefault();
+			    return false;
+			});
+			
+			// 当按钮点击事件触发的时候，再去触发安装横幅的显示
+			setTimeout(function(){
+				if (deferredPrompt != null) {
+				    // 异步触发横幅显示
+				    deferredPrompt.prompt();
+				    deferredPrompt = null;
+				}
+			},5000)
 		</script>
 	</head>
 	<body>
