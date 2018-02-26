@@ -1,102 +1,64 @@
-/*
- Copyright 2015 Google Inc. All Rights Reserved.
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
 
-'use strict';
 
-// Incrementing CACHE_VERSION will kick off the install event and force previously cached
-// resources to be cached again.
-const CACHE_VERSION = 1;
-let CURRENT_CACHES = {
-  offline: 'offline-v' + CACHE_VERSION
-};
-const OFFLINE_URL = 'index.html';
 
-function createCacheBustedRequest(url) {
-  let request = new Request(url, {cache: 'reload'});
-  // See https://fetch.spec.whatwg.org/#concept-request-mode
-  // This is not yet supported in Chrome as of M48, so we need to explicitly check to see
-  // if the cache: 'reload' option had any effect.
-  if ('cache' in request) {
-    return request;
-  }
-
-  // If {cache: 'reload'} didn't have any effect, append a cache-busting URL parameter instead.
-  let bustedUrl = new URL(url, self.location.href);
-  bustedUrl.search += (bustedUrl.search ? '&' : '') + 'cachebust=' + Date.now();
-  return new Request(bustedUrl);
-}
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    // We can't use cache.add() here, since we want OFFLINE_URL to be the cache key, but
-    // the actual URL we end up requesting might include a cache-busting parameter.
-    fetch(createCacheBustedRequest(OFFLINE_URL)).then(function(response) {
-      return caches.open(CURRENT_CACHES.offline).then(function(cache) {
-        return cache.put(OFFLINE_URL, response);
-      });
-    })
-  );
-});
-
-self.addEventListener('activate', event => {
-  // Delete all caches that aren't named in CURRENT_CACHES.
-  // While there is only one cache in this example, the same logic will handle the case where
-  // there are multiple versioned caches.
-  let expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
-    return CURRENT_CACHES[key];
-  });
-
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (expectedCacheNames.indexOf(cacheName) === -1) {
-            // If this cache name isn't present in the array of "expected" cache names,
-            // then delete it.
-            console.log('Deleting out of date cache:', cacheName);
-            return caches.delete(cacheName);
-          }
+self.addEventListener('install', function (event) {
+    event.waitUntil(
+        caches.open('my-cache-v1').then(function (cache) {
+            return cache.addAll(
+                "/",
+				"/assets/css/main.css",
+				"/images/banner.jpg",
+				"/images/spotlight01.jpg",
+				"/images/spotlight02.jpg",
+				"/images/spotlight03.jpg",
+				"/images/gallery/fulls/01.jpg",
+				"/images/gallery/fulls/02.jpg",
+				"/images/gallery/fulls/03.jpg",
+				"/images/gallery/fulls/04.jpg",
+				"/assets/css/font-awesome.min.css",
+				"/assets/js/jquery.min.js",
+				"/assets/js/jquery.scrollex.min.js",
+				"/assets/js/jquery.scrolly.min.js",
+				"/assets/js/skel.min.js",
+				"/assets/js/util.js",
+				"/assets/js/main.js"
+            );
         })
-      );
-    })
-  );
+    );
 });
 
-self.addEventListener('fetch', event => {
-  // We only want to call event.respondWith() if this is a navigation request
-  // for an HTML page.
-  // request.mode of 'navigate' is unfortunately not supported in Chrome
-  // versions older than 49, so we need to include a less precise fallback,
-  // which checks for a GET request with an Accept: text/html header.
-  if (event.request.mode === 'navigate' ||
-      (event.request.method === 'GET' &&
-       event.request.headers.get('accept').includes('text/html'))) {
-    console.log('Handling fetch event for', event.request.url);
-    event.respondWith(
-      fetch(event.request).catch(error => {
-        // The catch is only triggered if fetch() throws an exception, which will most likely
-        // happen due to the server being unreachable.
-        // If fetch() returns a valid HTTP response with an response code in the 4xx or 5xx
-        // range, the catch() will NOT be called. If you need custom handling for 4xx or 5xx
-        // errors, see https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker/fallback-response
-        console.log('Fetch failed; returning offline page instead.', error);
-        return caches.match(OFFLINE_URL);
-      })
-    );
-  }
 
-  // If our if() condition is false, then this fetch handler won't intercept the request.
-  // If there are any other fetch handlers registered, they will get a chance to call
-  // event.respondWith(). If no fetch handlers call event.respondWith(), the request will be
-  // handled by the browser as if there were no service worker involvement.
+
+
+self.addEventListener('fetch', function (event) {
+    event.respondWith(
+        caches.match(event.request).then(function (response) {
+            // 来来来，代理可以搞一些代理的事情
+
+            // 如果 Service Worker 有自己的返回，就直接返回，减少一次 http 请求
+            if (response) {
+                return response;
+            }
+
+            // 如果 service worker 没有返回，那就得直接请求真实远程服务
+            var request = event.request.clone(); // 把原始请求拷过来
+            return fetch(request).then(function (httpRes) {
+
+                // http请求的返回已被抓到，可以处置了。
+
+                // 请求失败了，直接返回失败的结果就好了。。
+                if (!httpRes || httpRes.status !== 200) {
+                    return httpRes;
+                }
+
+                // 请求成功的话，将请求缓存起来。
+                var responseClone = httpRes.clone();
+                caches.open('my-cache-v1').then(function (cache) {
+                    cache.put(event.request, responseClone);
+                });
+
+                return httpRes;
+            });
+        })
+    );
 });

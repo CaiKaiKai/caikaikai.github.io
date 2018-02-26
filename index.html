@@ -9,16 +9,10 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
 		<script language="javascript">
-			var deferredPrompt = null;
-			window.addEventListener('beforeinstallprompt', function (e) {
-			    // 将事件返回存储起来
-			    deferredPrompt = e;
-			    deferredPrompt.prompt();
-			});
 			// Register the service worker
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load',function(){
-					navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+					navigator.serviceWorker.register('sw.js').then(function(registration) {
 					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
 					}).catch(function(err) {
