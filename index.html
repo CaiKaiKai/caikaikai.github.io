@@ -9,12 +9,18 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
 		<script language="javascript">
+			var deferredPrompt = null;
+			window.addEventListener('beforeinstallprompt', function (e) {
+			    // 将事件返回存储起来
+			    deferredPrompt = e;
+			});
 			// Register the service worker
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load',function(){
 					navigator.serviceWorker.register('service-worker.js').then(function(registration) {
 					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					    deferredPrompt.prompt();
 					}).catch(function(err) {
 					    // registration failed :(
 				    	console.log('ServiceWorker registration failed: ', err);
@@ -265,28 +271,3 @@
 
 	</body>
 </html>
-<script type="text/javascript">
-	var deferredPrompt = null;
-
-		window.addEventListener('beforeinstallprompt', function (e) {
-		    // 将事件返回存储起来
-		    deferredPrompt = e;
-			console.log(e)
-		    // 取消默认事件
-		    e.preventDefault();
-		    return false;
-		});
-		document.getElementById('test').addEventListener('click', function () {
-		    if (deferredPrompt != null) {
-		        // 异步触发横幅显示
-		        deferredPrompt.prompt();
-		        console.log(deferredPrompt,'121')
-		        // 检测用户的安装行为
-		        deferredPrompt.userChoice.then(function (choiceResult) {
-		            console.log(choiceResult.outcome);
-		        });
-		
-		        deferredPrompt = null;
-		    }
-		});
-</script>

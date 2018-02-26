@@ -1,6 +1,6 @@
 {
   "short_name": "Amor",
-  "name": "Caikaikai",
+  "name": "Mr.amor",
   "icons": [
     {
       "src":"/images/loadlogo.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/",
+  "start_url": "/?utm_source=homescreen",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",
   "display": "standalone"
