@@ -15,6 +15,7 @@
 					navigator.serviceWorker.register('service-worker.js').then(function(registration) {
 					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					    deferredPrompt.prompt();
 					}).catch(function(err) {
 					    // registration failed :(
 				    	console.log('ServiceWorker registration failed: ', err);
@@ -47,7 +48,7 @@
 							<h2>Magna etiam feugiat</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
 							<ul class="actions vertical">
-								<li><a href="#" class="button">Learn More</a></li>
+								<li><a id="test" class="button">Learn More</a></li>
 							</ul>
 						</div>
 						<div class="image">
@@ -265,3 +266,27 @@
 
 	</body>
 </html>
+<script type="text/javascript">
+	var deferredPrompt = null;
+
+		window.addEventListener('beforeinstallprompt', function (e) {
+		    // 将事件返回存储起来
+		    deferredPrompt = e;
+		
+		    // 取消默认事件
+		    e.preventDefault();
+		    return false;
+		});
+		document.getElementById('test').addEventListener('click', function () {
+		    if (deferredPrompt != null) {
+		        // 异步触发横幅显示
+		        deferredPrompt.prompt();
+		        // 检测用户的安装行为
+		        deferredPrompt.userChoice.then(function (choiceResult) {
+		            console.log(choiceResult.outcome);
+		        });
+		
+		        deferredPrompt = null;
+		    }
+		});
+</script>
