@@ -10,7 +10,6 @@
 		<meta name="theme-color" content="#FFFFFF">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
-		
 		<script language="javascript">
 			// Register the service worker
 			if ('serviceWorker' in navigator) {
@@ -25,16 +24,13 @@
 				})
 			}
 			var deferredPrompt = null;
-
 			window.addEventListener('beforeinstallprompt', function (e) {
 			    // 将事件返回存储起来
 			    deferredPrompt = e;
-			
 			    // 取消默认事件
 			    e.preventDefault();
 			    return false;
 			});
-			
 			// 当按钮点击事件触发的时候，再去触发安装横幅的显示
 			setTimeout(function(){
 				if (deferredPrompt != null) {
@@ -66,10 +62,10 @@
 				<!-- Two -->
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
 						<div class="content">
-							<h2>Magna etiam feugiat</h2>
+							<h2>Iframe Go</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
 							<ul class="actions vertical">
-								<li><a id="test" class="button">Learn More</a></li>
+								<li><a class="button" href="iframe/iframe.html">Learn More</a></li>
 							</ul>
 						</div>
 						<div class="image">
