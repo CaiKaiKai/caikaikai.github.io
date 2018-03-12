@@ -17,7 +17,10 @@
 					navigator.serviceWorker.register('sw.js').then(function(registration) {
 					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-					    deferredPrompt.prompt();
+					    window.addEventListener('beforeinstallprompt', function (e) {
+						    var deferredPrompt = e;
+						    deferredPrompt.prompt();
+						});
 					}).catch(function(err) {
 					    // registration failed :(
 				    	console.log('ServiceWorker registration failed: ', err);
