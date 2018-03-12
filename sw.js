@@ -45,7 +45,7 @@ self.addEventListener('fetch', function (event) {
                 // http请求的返回已被抓到，可以处置了。
 
                 // 请求失败了，直接返回失败的结果就好了。。
-                if (!httpRes || httpRes.status !== 200) {
+                if (!httpRes || httpRes.status !== 200||httpRes.url.indexOf('asp') !== -1 ) {
                     return httpRes;
                 }
 				console.log(httpRes)
