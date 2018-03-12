@@ -17,13 +17,13 @@
 					navigator.serviceWorker.register('sw.js').then(function(registration) {
 					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					    deferredPrompt.prompt();
 					}).catch(function(err) {
 					    // registration failed :(
 				    	console.log('ServiceWorker registration failed: ', err);
 				    });
 				})
 			}
-			deferredPrompt.prompt();
 //			var deferredPrompt = null;
 //			window.addEventListener('beforeinstallprompt', function (e) {
 //			    // 将事件返回存储起来
