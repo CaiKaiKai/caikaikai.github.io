@@ -45,10 +45,9 @@ self.addEventListener('fetch', function (event) {
                 // http请求的返回已被抓到，可以处置了。
 
                 // 请求失败了，直接返回失败的结果就好了。。
-                if (!httpRes || httpRes.status !== 200||httpRes.url.indexOf('asp') !== -1 ) {
+                if (!httpRes || httpRes.status !== 200) {
                     return httpRes;
                 }
-				console.log(httpRes)
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
                 caches.open(CACHE_NAME).then(function (cache) {
