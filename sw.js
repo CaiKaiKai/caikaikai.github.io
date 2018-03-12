@@ -48,9 +48,7 @@ self.addEventListener('fetch', function (event) {
                 if (!httpRes || httpRes.status !== 200) {
                     return httpRes;
                 }
-				if (httpRes.indexOf('.asp') !== -1 ) {
-					return httpRes;
-				}
+				console.log(httpRes)
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
                 caches.open(CACHE_NAME).then(function (cache) {
