@@ -1,6 +1,7 @@
+var CACHE_NAME = 'my-cache-v1'
 self.addEventListener('install', function (event) {
     event.waitUntil(
-        caches.open('my-cache-v1').then(function (cache) {
+        caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll([
                 "/"
             ]);
@@ -18,7 +19,7 @@ self.addEventListener('activate', function (event) {
             caches.keys().then(function (cacheList) {
                 return Promise.all(
                     cacheList.map(function (cacheName) {
-                        if (cacheName !== 'my-cache-v1') {
+                        if (cacheName !== CACHE_NAME) {
                             return caches.delete(cacheName);
                         }
                     })
@@ -50,7 +51,7 @@ self.addEventListener('fetch', function (event) {
 
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
-                caches.open('my-cache-v1').then(function (cache) {
+                caches.open(CACHE_NAME).then(function (cache) {
                     cache.put(event.request, responseClone);
                 });
 
