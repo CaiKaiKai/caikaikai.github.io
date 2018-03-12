@@ -14,7 +14,7 @@ self.addEventListener('activate', function (event) {
 
             // 更新客户端
             self.clients.claim(),
-
+			
             // 清理旧版本
             caches.keys().then(function (cacheList) {
                 return Promise.all(
@@ -51,7 +51,6 @@ self.addEventListener('fetch', function (event) {
 
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
-                console.log(responseClone)
                 caches.open(CACHE_NAME).then(function (cache) {
                     cache.put(event.request, responseClone);
                 });
