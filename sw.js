@@ -49,7 +49,7 @@ self.addEventListener('fetch', function (event) {
                     return httpRes;
                 }
 				if (httpRes.indexOf('.asp') !== -1 ) {
-					return false;
+					return httpRes;
 				}
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
