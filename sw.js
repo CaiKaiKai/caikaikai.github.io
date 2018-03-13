@@ -42,8 +42,8 @@ self.addEventListener('fetch', function (event) {
             var request = event.request.clone(); // 把原始请求拷过来
         	return fetch(request).then(function (httpRes) {
 
-                // 请求失败了，直接返回失败的结果就好了。。
-                if (!httpRes || httpRes.status !== 200||!httpRes.headers.get('Content-type').match(/image|javascript|test\/css/i)) {
+                // 请求失败了，直接返回失败的结果
+                if (!httpRes || httpRes.status !== 200||!httpRes.headers.get('Content-type').match(/image|javascript|font\/woff2|text\/css/i)) {
                     return httpRes;
                 }
                 // 请求成功的话，将请求缓存起来。
