@@ -1,4 +1,4 @@
-var CACHE_NAME = 'my-cache-v2'
+var CACHE_NAME = 'my-cache-v1'
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
@@ -29,6 +29,28 @@ self.addEventListener('activate', function (event) {
     );
 });
 
+// 联网状态下执行
+function onlineRequest(fetchRequest) {
+    // 使用 fecth API 获取资源，以实现对资源请求控制
+    return fetch(fetchRequest).then(response => {
+        // 在资源请求成功后，将 image、js、css 资源加入缓存列表
+        if (
+            !response
+            || response.status !== 200
+            || !response.headers.get('Content-type').match(/image|javascript|test\/css/i)
+        ) {
+            return response;
+        }
+
+        const responseToCache = response.clone();
+        caches.open(CACHE_NAME)
+            .then(function (cache) {
+                cache.put(event.request, responseToCache);
+            });
+        return response;
+    })
+}
+
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function (response) {
@@ -40,22 +62,7 @@ self.addEventListener('fetch', function (event) {
 
             // 如果 service worker 没有返回，那就得直接请求真实远程服务
             var request = event.request.clone(); // 把原始请求拷过来
-            return fetch(request).then(function (httpRes) {
-
-                // http请求的返回已被抓到，可以处置了。
-
-                // 请求失败了，直接返回失败的结果就好了。。
-                if (!httpRes || httpRes.status !== 200) {
-                    return httpRes;
-                }
-                // 请求成功的话，将请求缓存起来。
-                var responseClone = httpRes.clone();
-                caches.open(CACHE_NAME).then(function (cache) {
-                    cache.put(event.request, responseClone);
-                });
-
-                return httpRes;
-            });
+            return onlineRequest(request)
         })
     );
 });
