@@ -11,18 +11,15 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
 		<script language="javascript">
-			// Register the service worker
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load',function(){
 					navigator.serviceWorker.register('sw.js').then(function(registration) {
-					    // Registration was successful
 					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
 					    window.addEventListener('beforeinstallprompt', function (e) {
 						    var deferredPrompt = e;
 						    deferredPrompt.prompt();
 						});
 					}).catch(function(err) {
-					    // registration failed :(
 				    	console.log('ServiceWorker registration failed: ', err);
 				    });
 				})
