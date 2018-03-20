@@ -6,7 +6,7 @@ self.addEventListener('install', function (event) {
                 "/"
             ]);
         }).then(function(){
-        	slef.skipWaiting();
+        	self.skipWaiting();
         })
     );
 });
