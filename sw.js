@@ -5,6 +5,8 @@ self.addEventListener('install', function (event) {
             return cache.addAll([
                 "/"
             ]);
+        }).then(function(){
+        	slef.skipWaiting();
         })
     );
 });
