@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
 		<script language="javascript">
-			var CACHE_NAME = 'my-cache-v1';
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load',function(){
 					navigator.serviceWorker.register('sw.js',{scope:'/'}).then(function(registration) {
