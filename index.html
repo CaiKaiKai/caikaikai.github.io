@@ -15,6 +15,7 @@
 		<link rel="icon" href="images/flower48.png" type="image/x-icon">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
+		<link rel="stylesheet" type="text/css" href="assets/css/jquery.alerts.css"/>
 		<script language="javascript">
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load',function(){
@@ -42,7 +43,7 @@
 								I'm going to live it as best I can,for as long as I can.
 							</p>
 							<ul class="actions vertical">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
+								<li><a id="start" class="button big wide smooth-scroll-middle">Get Started</a></li>
 							</ul>
 						</div>
 						<div class="image">
@@ -262,6 +263,34 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script src="assets/js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="assets/js/jquery.alerts.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
+<script type="text/javascript">
+	$('#start').click(function(){
+		var h =  document.documentElement.clientHeight
+		var ifh = h*0.7
+		jAlert('<iframe width=100% height='+ifh+' src=index-demo.html></iframe>', 'Buy Now')
+		$('#popup_message').css('height',ifh)
+		$('#popup_overlay').on('touchmove',function(event){
+			event.preventDefault()
+		},false)
+		stop()
+	})
+	
+	
+	function stop(){
+		$('body').css({
+			'position':'fixed',
+			'left':0,
+			'top':0
+		})
+		$('#popup_overlay').on('touchmove',function(event){
+			event.preventDefault()
+		},false)
+		$('#popup_overlay').on('touchend',function(){
+			$('#popup_overlay').unbind('touchmove')
+		})
+	}
+</script>
