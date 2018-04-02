@@ -299,8 +299,8 @@ Cookies.remove('dotype');
 	
 }
 try{ 
-	document.getElementById("popup_container").remove();
-	document.getElementById("popup_overlay").remove();
+	document.getElementById("popup_container").remove(0);
+	document.getElementById("popup_overlay").remove(0);
 	document.body.style.position = 'static'
 }catch(err){ 
     document.getElementById("popup_container").removeNode(true);
