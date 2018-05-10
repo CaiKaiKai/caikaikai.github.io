@@ -246,7 +246,7 @@
 					<footer class="wrapper style1 align-center">
 						<div class="inner">
 							<ul class="icons">
-								<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a id="tw-share" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
 								<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
 								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
@@ -265,3 +265,29 @@
 
 	</body>
 </html>
+<script type="text/javascript">
+	var base = 'https://twitter.com/intent/tweet'
+	var ttext = '分享的内容';
+	var turl = location.href;
+	var path = (base + '?url=' + turl + '&text=' + ttext);
+	
+	$('#tw-share').click(function(){
+		$(this).attr('href',path)
+	})
+	window.twttr = (function (d,s,id) {
+	    var t, js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+	    js.src="//platform.twitter.com/widgets.js"; 
+	    fjs.parentNode.insertBefore(js, fjs);
+	    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+    }(document, "script", "twitter-wjs"));
+    function loguser( event ) {
+	    if ( event ) {
+	        alert( 'Tweeted' );
+	        console.log( event );
+	    }
+	}
+    twttr.ready(function (twttr) {
+	    twttr.events.bind('tweet', loguser);
+	});
+</script>
