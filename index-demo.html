@@ -2722,7 +2722,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 								<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
 								<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
 								<li><a href="#" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+								<li><a  class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
 							<iframe width="854" height="480" id="yvideo" src="https://www.youtube.com/embed/38wgv9JztEg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 						</div>
@@ -2775,4 +2775,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 	      console.log('cued') 
 	    }
 	}
+	$('.fa-envelope').click(function(){
+		player.stopVideo()
+	})
 </script>
