@@ -2724,7 +2724,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 								<li><a href="#" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
 								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
-							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							<iframe width="854" height="480" id="yvideo" src="https://www.youtube.com/embed/38wgv9JztEg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 						</div>
 					</footer>
 
@@ -2743,3 +2743,36 @@ print 'It took ' + i + ' iterations to sort the deck.';
 
 	</body>
 </html>
+<script src="https://www.youtube.com/iframe_api" type="text/javascript" charset="utf-8" async="async"></script>
+<script type="text/javascript">
+	var player;
+	function onYouTubeIframeAPIReady() {
+	  player = new YT.Player('yvideo', {
+	    events: {
+	      'onReady': onPlayerReady,
+	      'onStateChange': onPlayerStateChange
+	    }
+	  });
+	}
+	function onPlayerReady(){
+		console.log('onready')
+	}
+	function onPlayerStateChange(event){
+		playerChange(event.data)
+	}
+	function playerChange(playerStatus) {
+	    if (playerStatus == -1) {
+	     console.log('unstarted') 
+	    } else if (playerStatus == 0) {
+	      console.log('ended') 
+	    } else if (playerStatus == 1) {
+	      console.log('playing') 
+	    } else if (playerStatus == 2) {
+	      console.log('paused ') 
+	    } else if (playerStatus == 3) {
+	      console.log('buffering') 
+	    } else if (playerStatus == 5) {
+	      console.log('cued') 
+	    }
+	}
+</script>
