@@ -2743,8 +2743,12 @@ print 'It took ' + i + ' iterations to sort the deck.';
 
 	</body>
 </html>
-<script src="https://www.youtube.com/iframe_api" type="text/javascript" charset="utf-8" async="async"></script>
 <script type="text/javascript">
+	var tag = document.createElement('script');
+  tag.id = 'iframe-demo';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	var player;
 	function onYouTubeIframeAPIReady() {
 	  player = new YT.Player('yvideo', {
