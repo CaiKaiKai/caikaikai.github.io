@@ -15,6 +15,7 @@
 		<link rel="icon" href="images/flower48.png" type="image/x-icon">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="manifest" href="manifest.json">
+		<link rel="stylesheet" type="text/css" href="assets/css/jquery.alerts.css"/>
 		<script language="javascript">
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load',function(){
@@ -248,7 +249,7 @@
 							<ul class="icons">
 								<li><a id="tw-share" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
 								<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+								<li><a href="#" class="icon style2 fa-envelope test"><span class="label">Email</span></a></li>
 							</ul>
 						</div>
 					</footer>
@@ -262,7 +263,8 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script src="assets/js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="assets/js/jquery.alerts.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
 <script type="text/javascript">
@@ -290,4 +292,8 @@
     twttr.ready(function (twttr) {
 	    twttr.events.bind('tweet', loguser);
 	});
+	
+	$('.test').click(function(){
+		jAlert('<iframe width=100% height=400 src=AMP.html></iframe>', 'test','','Loading...')
+	})
 </script>
