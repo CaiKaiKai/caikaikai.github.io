@@ -264,37 +264,5 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
-			<script src="assets/js/jquery.alerts.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
-<script type="text/javascript">
-	var base = 'https://twitter.com/intent/tweet'
-	var ttext = '分享的内容';
-	var turl = location.href;
-	var path = (base + '?url=' + turl + '&text=' + ttext);
-	
-	$('#tw-share').click(function(){
-		$(this).attr('href',path)
-	})
-	window.twttr = (function (d,s,id) {
-	    var t, js, fjs = d.getElementsByTagName(s)[0];
-	    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
-	    js.src="//platform.twitter.com/widgets.js"; 
-	    fjs.parentNode.insertBefore(js, fjs);
-	    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
-    }(document, "script", "twitter-wjs"));
-    function loguser( event ) {
-	    if ( event ) {
-	        alert( 'Tweeted' );
-	        console.log( event );
-	    }
-	}
-    twttr.ready(function (twttr) {
-	    twttr.events.bind('tweet', loguser);
-	});
-	
-	$('.test').click(function(){
-		jAlert('<iframe width=100% height=400 src=AMP.html></iframe>', 'test','','Loading...')
-	})
-	console.log(document.referrer)
-</script>
