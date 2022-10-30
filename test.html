@@ -75,9 +75,12 @@
 var bigWord = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var smallWord = ['a','b','c','d','e','f','g','h','i','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z'];
 var numbers = ['1','2','3','4','5','6','7','8','9'];
-var special =['#','@','%']
+var special =['#','@','%'];
+
+function getBword(){
 var first = bigWord[Math.floor(Math.random()*bigWord.length)];
-console.log(first)
+	return first;
+}
 function getSword(){
     sw = smallWord[Math.floor(Math.random()*smallWord.length)];
     return sw;
@@ -94,7 +97,7 @@ function getSpecial(){
 
 function getPsw(){
 	
-	return first+getSword()+getSword()+getSword()+getNumber()+getNumber()+getNumber()+getNumber()+getSpecial()
+	return getBword()+getSword()+getSword()+getSword()+getNumber()+getNumber()+getNumber()+getNumber()+getSpecial()
 }
 var passWord = getPsw()
 
