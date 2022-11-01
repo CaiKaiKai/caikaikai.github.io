@@ -1,0 +1,10 @@
+.imgGrid{
+	width: 100%;
+	margin: 10px auto;
+	display: grid;
+	grid-template-columns:repeat(3,auto);
+	grid-gap:1rem;
+}
+.imgGrid img{
+	width: 100%;
+}
