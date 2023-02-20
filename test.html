@@ -94,13 +94,15 @@ function getSpecial(){
     sp = special[Math.floor(Math.random()*special.length)];
     return sp;
 }
-
+var strPsw="";
 function getPsw(){
+	var psw = getBword()+getSword()+getSword()+getSword()+getSword()+getSword()+getSword()+getSword()+getSword()+getNumber()+getNumber()+getNumber()+getNumber()
+	let time = new Date()
+	localStorage.setItem(time,psw)
+	return psw
 	
-	return getBword()+getSword()+getSword()+getSword()+getSword()+getSword()+getSword()+getSword()+getSword()+getNumber()+getNumber()+getNumber()+getNumber()
 }
 var passWord = getPsw()
-
 var psw = document.getElementById("password");
 var btnPsw =document.getElementById("btnPsw");
 psw.innerText = passWord
