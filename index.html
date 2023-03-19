@@ -1,49 +1,66 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>晓寒浅梦</title>
+		<title>Amor</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="晓寒浅梦的测试网站">
+		<meta name="description" content="Amor's' Website">
 		<meta name="x5-orientation" content="portrait">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#FFFFFF">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
-		<meta name="apple-mobile-web-app-title" content="晓寒浅梦">
-		<link rel="apple-touch-icon" href="images/loadlogo.png">
-		<link rel="icon" href="images/flower48.png" type="image/x-icon">
-		<link rel="manifest" href="manifest.json">
+		<meta name="apple-mobile-web-app-title" content="Amor">
+		<link rel="icon" href="images/favicon1.ico">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-		<script language="javascript">
-			if ('serviceWorker' in navigator) {
-				window.addEventListener('load',function(){
-					navigator.serviceWorker.register('sw.js',{scope:'/'}).then(function(registration) {
-					    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-					    window.addEventListener('beforeinstallprompt', function (e) {
-						    var deferredPrompt = e;
-						    deferredPrompt.prompt();
-						});
-					}).catch(function(err) {
-				    	console.log('ServiceWorker registration failed: ',err);
-				    });
-				})
-			}
-		</script>
 	</head>
 	<body>
-		<section class="sectionBlock">
-			<div class="imgGrid">
-				<img src="images/gallery/fulls/01.jpg" >
-				<img src="images/gallery/fulls/02.jpg" >
-				<img src="images/gallery/fulls/03.jpg" >
-				<img src="images/gallery/fulls/04.jpg" >
-				<img src="images/gallery/fulls/05.jpg" >
-				<img src="images/gallery/fulls/06.jpg" >
-				<img src="images/gallery/fulls/07.jpg" >
-				<img src="images/gallery/fulls/08.jpg" >
-				<img src="images/gallery/fulls/09.jpg" >
+		<div class="start"> <div class="start_img"> <h1 class="text-center"> <span>Wellcome Amor's Website</span> </h1> </div> </div>
+		<div class="main">
+			<div class="start-demo">
+				<div class="am-container">
+					<div class="grid firstcontent">
+						<div class="col_lg-6 col_md-6 col_sm-12">
+							<div class="content-column">
+								<div class="inner-column">
+									<h1><span class="adorn">晓寒</span></h1>
+									<h1>浅梦</h1>
+									<div class="note">北冥有鱼，其名为鲲。鲲之大，不知其几千里也。化而为鸟，其名为鹏。鹏之背，不知其几千里也，怒而飞，其翼若垂天之云。</div>
+								</div>
+							</div>
+						</div>
+						<div class="col_lg-6 col_md-6 col_sm-12">
+							<div class="img-column">
+								<div class="figure"><img src="images/side/side1.jpg" ></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</section>
+			<div class="block-demo">
+				<div class="am-container">
+					<div class="block-item">
+						<div class="block-title">
+							<h2>标题哦</h2>
+						</div>
+						<div class="block-content">
+							<div class="grid">
+								<div class="col-lg-4 b-dashed" data-aos="fade-up">
+									<a href="password.html" target="_blank"><span class="adornpoint">随机密码生成器</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div class="fixbtn"><a href="index.html"><img src="images/fixbtn.png" ></a></div>
+				<div class="am-container">
+					<div class="footer-text">道可道，非常道；名可名，非常名。</div>
+				</div>
+			</footer>
+		</div>
 	</body>
 </html>
+<script src="assets/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/amor.js" type="text/javascript" charset="utf-8"></script>
