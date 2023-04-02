@@ -135,6 +135,7 @@ footer .footer-text{
 .block-title h2{
 	position: relative;
 	padding: 20px 0;
+	letter-spacing: 2px;
 }
 .block-title h2:before{
 	content: " ";
@@ -181,6 +182,9 @@ footer .footer-text{
 	transform: translateY(5px);
 }
 /* breadcrumb */
+.breadcrumb{
+	background: url(../../images/background/balanc.jpg);
+}
 .breadcrumb h2{
 	padding: 30px;
 	letter-spacing: 8px;
@@ -224,7 +228,7 @@ footer .footer-text{
 	border: none;
 	background: #18191b;
 	color: #FFFFFF;
-	padding: 1.2em 2em;
+	padding: 1em 2em;
 	cursor: pointer;
 }
 .btn span{
@@ -233,4 +237,35 @@ footer .footer-text{
 }
 .btn:hover{
 	box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+}
+/* BookMarks */
+.bmItem{
+	padding-top: 30px;
+}
+.bmItem .bmTitle{
+	margin-bottom: 10px;
+}
+.bmLink{
+	display: inline-block;
+}
+.bmLink a{
+	padding: 1em;
+	position: relative;
+	transition: all 0.3s ease-out;
+}
+.bmLink a:after{
+	content: " ";
+	width: 0%;
+	height: 2px;
+	background: #e94328;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	transition: all 0.3s ease-out;
+}
+.bmLink a:hover{
+	color: #e94328;
+}
+.bmLink a:hover::after{
+	width: 100%;
 }
