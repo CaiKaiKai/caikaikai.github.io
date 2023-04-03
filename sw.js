@@ -1,4 +1,4 @@
-var CACHE_NAME = 'my-cache-v2'
+var CACHE_NAME = 'my-cache-v1.1'
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {

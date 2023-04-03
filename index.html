@@ -11,19 +11,8 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
 		<meta name="apple-mobile-web-app-title" content="Amor">
-		<link rel="icon" href="images/favicon1.ico">
+		<link rel="icon" href="images/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-		<script language="javascript">
-			if ('serviceWorker' in navigator) {
-				window.addEventListener('load',function(){
-					navigator.serviceWorker.register('sw.js',{scope:'/'}).then(function(registration) {
-						navigator.serviceWorker.unregister()
-					}).catch(function(err) {
-						console.log('ServiceWorker registration failed: ',err);
-					});
-				})
-			}
-		</script>
 	</head>
 	<body>
 		<div class="start"> <div class="start_img"> <h1 class="text-center"> <span>Wellcome Amor's Website</span> </h1> </div> </div>
