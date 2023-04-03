@@ -13,21 +13,6 @@
 		<meta name="apple-mobile-web-app-title" content="Amor">
 		<link rel="icon" href="images/favicon1.ico">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-		<script language="javascript">
-					if ('serviceWorker' in navigator) {
-						window.addEventListener('load',function(){
-							navigator.serviceWorker.register('sw.js',{scope:'/'}).then(function(registration) {
-							    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-							    window.addEventListener('beforeinstallprompt', function (e) {
-								    var deferredPrompt = e;
-								    deferredPrompt.prompt();
-								});
-							}).catch(function(err) {
-						    	console.log('ServiceWorker registration failed: ',err);
-						    });
-						})
-					}
-				</script>
 	</head>
 	<body>
 		<div class="main">
@@ -68,7 +53,7 @@
 				</div>
 			</div>
 			<footer>
-				<div class="fixbtn"><a href="index.html"><img src="images/fixbtn.png" ></a></div>
+				<div class="fixbtn" data-aos="zoom-in"><a href="index.html"><img src="images/fixbtn.png" ></a></div>
 				<div class="am-container">
 					<div class="footer-text">道可道，非常道；名可名，非常名。</div>
 				</div>

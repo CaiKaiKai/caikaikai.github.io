@@ -13,6 +13,17 @@
 		<meta name="apple-mobile-web-app-title" content="Amor">
 		<link rel="icon" href="images/favicon1.ico">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+		<script language="javascript">
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load',function(){
+					navigator.serviceWorker.register('sw.js',{scope:'/'}).then(function(registration) {
+						navigator.serviceWorker.unregister()
+					}).catch(function(err) {
+						console.log('ServiceWorker registration failed: ',err);
+					});
+				})
+			}
+		</script>
 	</head>
 	<body>
 		<div class="start"> <div class="start_img"> <h1 class="text-center"> <span>Wellcome Amor's Website</span> </h1> </div> </div>
@@ -37,40 +48,24 @@
 					</div>
 				</div>
 			</div>
-			<div class="block-demo">
+			<!-- <div class="block-demo">
 				<div class="am-container">
 					<div class="block-item">
 						<div class="block-title">
-							<h2>‍工具吧</h2>
+							<h2 ></h2>
 						</div>
 						<div class="block-content">
 							<div class="grid">
 								<div class="col-lg-4 b-dashed" data-aos="fade-up">
-									<a href="password.html" target="_blank"><span class="adornpoint">随机密码生成器</span></a>
+									<a href="bookmarks.html" target="_blank"><span class="adornpoint"></span></a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="block-demo">
-				<div class="am-container">
-					<div class="block-item">
-						<div class="block-title">
-							<h2 >导航</h2>
-						</div>
-						<div class="block-content">
-							<div class="grid">
-								<div class="col-lg-4 b-dashed" data-aos="fade-up">
-									<a href="bookmarks.html" target="_blank"><span class="adornpoint">书签</span></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			</div> -->
 			<footer>
-				<div class="fixbtn"><a href="index.html"><img src="images/fixbtn.png" ></a></div>
+				<div class="fixbtn" data-aos="zoom-in"><a href="index.html"><img src="images/fixbtn.png" ></a></div>
 				<div class="am-container">
 					<div class="footer-text">道可道，非常道；名可名，非常名。</div>
 				</div>
